@@ -28,7 +28,7 @@ def graph_maker(column_arr , color , title , x , y , file_name):
     axs.set_title(title)
 
     axs.set_xlabel(x)
-    plt.xticks(rotation=45)
+    plt.xticks(rotation=45,ha="right')
     axs.set_ylabel(y)
 
     fig.savefig(file_name)
@@ -57,7 +57,7 @@ def metric_display(attr , color , title , x , y , file_name):
     axs.bar(categories,values)
     axs.set_title(title)
     axs.set_xlabel(x)
-    plt.xticks(rotation=45)
+    plt.xticks(rotation=45,ha="right')
     plt.yscale('log')
     axs.set_ylabel(y)
     fig.savefig(file_name)
