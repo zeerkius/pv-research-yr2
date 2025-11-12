@@ -1,12 +1,20 @@
 Experiment Summary{1}
 
 This data was sourced from challenge data provided by the vcfannotatoR API tool.[1]
-Here we can see the data annotation and the original data in the .tsv format. In this file, we describe the data manipulation we performed to prepare it for our respective models. Note that some annotations will be the same, as they have not been modified.
+Here we can see the data annotation and the original data in the .tsv format. In this file, we describe the data manipulation performed to prepare the data for our respective models. Note that some annotations will be the same, as they have not been modified.
+
+The purpose of this experiment is to answer multiple questions.
+
+Is there a way to utilize datasets that include nucleotide Ref-Alt and associated Ref-Alt data to accurately predict the significance of variant consequences?
+
+Using the results from these models, how accurate are the predictions with current variant prediction technology? Are there any conflicts? Mismatches?
+
+The data includes a total of 4,061 records. The original dataset includes variant names associated with the provided columns; these will be omitted for the purpose of model consumption. We will use a 50-50 split for the training and testing sets. Models trained rigorously will be Chi-squared tested and compared against random seed models that predict random floating-point values from [1, 17]. This way, we can get a baseline for the expectation of correct prediction against our models. Using the total model error on the testing data, we will report the statistical significance of all models. Only significant models will then be used for the next step. We will compare model predictions with reports from current prediction software, such as Clin-Var-Significance, PubMed, and Missense3d reports.
+
 
 Models Source Code: Machine-Learning-In-Rust  GitHub Repo [2]
 
 Model Names: ANN, Linear Regression, Naive Bayes
-
 
 Here are some quick caveats about the data provided from Research Advisor: Dr.Victoria [vemgbemena@PVAMU.EDU]
 
@@ -50,7 +58,7 @@ minorallelefreq
 
 Columns Changed 
 
-most_severe_consequence 
+most_severe_consequence (*** Target Variable ***)
 
 to Nominal Values -> 1..17 respectively
 
@@ -94,4 +102,5 @@ Sources{3}
 
 [1]https://github.com/XUKEREN/vcfannotatoR.git
 [2]https://github.com/zeerkius/Machine-Learning-In-Rust.git
+
 
