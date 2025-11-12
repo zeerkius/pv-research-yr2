@@ -1,0 +1,97 @@
+Experiment Summary{1}
+
+This data was sourced from challenge data provided by the vcfannotatoR API tool.[1]
+Here we can see the data annotation and the original data in the .tsv format. In this file, we describe the data manipulation we performed to prepare it for our respective models. Note that some annotations will be the same, as they have not been modified.
+
+Models Source Code: Machine-Learning-In-Rust  GitHub Repo [2]
+
+Model Names: ANN, Linear Regression, Naive Bayes
+
+
+Here are some quick caveats about the data provided from Research Advisor: Dr.Victoria [vemgbemena@PVAMU.EDU]
+
+total_read_depth
+
+<= 30
+
+
+ref_read_depth
+
+<=30
+
+
+alt_read_depth
+
+<=30
+
+variant_allele_freq.1kg
+
+* Higher more common but at the same time more likely to be benign / some may be associated with disease (Normal Distribution) (Common -> Pathogenic) -> Really Important! (Higher Penetrance)
+
+minor_allele_freq
+
+Also seen in large populations but less common. So essentially an expression of the same "common gene" yet less likely to be expressed that way (Blue / Brown / Green Eyes Comparison)
+
+
+Model Translation{2}:
+
+
+Columns That will be left unchanged :
+
+totalreaddepth
+
+refreaddepth
+
+altreaddepth
+
+variantallelefreq.1kg
+
+minorallelefreq
+
+Columns Changed 
+
+most_severe_consequence 
+
+to Nominal Values -> 1..17 respectively
+
+'synonymousvariant' -> 1
+'startlost' -> 2
+'intergenicvariant' -> 3
+'regulatoryregionvariant' -> 4
+'upstreamgenevariant' -> 5
+'noncodingtranscriptexonvariant' -> 6
+'intronvariant' -> 7
+'downstreamgenevariant' -> 8
+'missensevariant' -> 9
+'5primeUTRvariant' -> 10
+'3primeUTRvariant' -> 11
+'splicedonor5thbasevariant' -> 12
+'splicepolypyrimidinetractvariant' -> 13
+'splicedonorregionvariant' -> 14
+'splicedonorvariant' -> 15
+'spliceregionvariant' -> 16
+'stoplost' -> 17
+
+Ref-Alt
+
+to Nominal Values -> 1..12 respectively
+
+'GA' -> 1
+'AT' -> 2
+'GT' -> 3
+'AC' -> 4
+'CA' -> 5
+'GC' -> 6
+'CG' -> 7
+'AG' -> 8
+'TC' -> 9
+'CT' -> 10
+'TA' -> 11
+'TG' -> 12
+
+
+Sources{3}
+
+[1]https://github.com/XUKEREN/vcfannotatoR.git
+[2]https://github.com/zeerkius/Machine-Learning-In-Rust.git
+
