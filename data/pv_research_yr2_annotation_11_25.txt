@@ -9,7 +9,7 @@ Is there a way to utilize datasets that include nucleotide Ref-Alt and associate
 
 Using the results from these models, how accurate are the predictions with current variant prediction technology? Are there any conflicts? Mismatches?
 
-The data includes a total of 4,061 records. The original dataset includes variant names associated with the provided columns; these will be omitted for the purpose of model consumption. We will use a 50-50 split for the training and testing sets. Models trained rigorously will be Chi-squared tested and compared against random seed models that predict random floating-point values from [1, 17]. This way, we can get a baseline for the expectation of correct prediction against our models. Using the total model error on the testing data, we will report the statistical significance of all models. Only significant models will then be used for the next step. We will compare model predictions with reports from current prediction software, such as Clin-Var-Significance, PubMed, and Missense3d reports.
+The data includes a total of 2,549 records. The original dataset includes variant names associated with the provided columns; these will be omitted for the purpose of model consumption. We will use a 50-50 split for the training and testing sets. Models trained rigorously will be Chi-squared tested and compared against random seed models that predict random floating-point values from [1, 17]. This way, we can get a baseline for the expectation of correct prediction against our models. Using the total model error on the testing data, we will report the statistical significance of all models. Only significant models will then be used for the next step. We will compare model predictions with reports from current prediction software, such as Clin-Var-Significance, PubMed, and Missense3d reports.
 
 
 Models Source Code: Machine-Learning-In-Rust  GitHub Repo [2]
@@ -22,17 +22,17 @@ Here are some quick caveats about the data provided from Research Advisor: Dr.Vi
 
 total_read_depth
 
-<= 30
+<= 10 has been removed
 
 
 ref_read_depth
 
-<=30
+<=10 has been removed
 
 
 alt_read_depth
 
-<=30
+<=10 has been removed
 
 variant_allele_freq.1kg
 
@@ -46,7 +46,12 @@ Also seen in large populations but less common. So essentially an expression of 
 Model Translation{2}:
 
 
-Columns That will be left unchanged :
+Columns that will be left unchanged :
+
+* caveat for read depth values, all 0 values will be removed from the dataset as 0 reads are not reliable
+* We need to remove all read data with values that are less <= 10
+
+
 
 totalreaddepth
 
@@ -104,8 +109,3 @@ Sources{3}
 
 [1]https://github.com/XUKEREN/vcfannotatoR.git
 [2]https://github.com/zeerkius/Machine-Learning-In-Rust.git
-
-
-
-
-
